@@ -1,0 +1,31 @@
+version: '3.2'
+
+services:
+
+  mysql:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+    - 3306:3306
+    environment:
+      MYSQL_DATABASE: test
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_USER: sa
+      MYSQL_PASSWORD: Root123_
+
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2019-CU12-ubuntu-20.04
+    restart: always
+    ports:
+    - 1433:1433
+    environment:
+      ACCEPT_EULA: Y
+      SA_PASSWORD: Root123_
+      MSSQL_PID: Express
+         
+  adminer:
+    image: remote-docker-hub.artifactory.danskenet.net/adminer
+    restart: always
+    ports:
+    - 8080:8080
